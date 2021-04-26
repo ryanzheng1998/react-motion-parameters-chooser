@@ -1,17 +1,20 @@
 import React from 'react';
-import Line from './components/Line'
+import LineChart from './components/LineChart'
+import InputField from './components/InputField'
 
 const App: React.FC = () => {
 
   return (
-    <svg>
-      <Line 
+    <>
+      <InputField />
+      <LineChart 
         stiffness={100}
         damping={20}
-        canvas={{x: 300, y: 400}}
-        padding={20}
+        canvas={{x: 500, y: 300}}
+        padding={{top: 13, right: 15, buttom: 50, left: 50}}
+        maxValue={{x: 300, y: 200}}
       />
-    </svg>
+    </>
   )
 }
 

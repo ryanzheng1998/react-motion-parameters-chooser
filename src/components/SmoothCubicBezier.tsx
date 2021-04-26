@@ -1,5 +1,5 @@
 import React from 'react'
-import { Vector } from '../lib/type'
+import { Vector } from '../lib/types'
 
 // model
 interface Props {
@@ -59,8 +59,8 @@ const SmoothCubicBezier: React.FC<Props> = (p) => {
             <path 
                 d={start + middle}
                 fill="transparent"
-                stroke="black"
-                strokeWidth="1"
+                stroke="green"
+                strokeWidth="1.5"
             />
         </>
     )
