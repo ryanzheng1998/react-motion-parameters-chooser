@@ -1,8 +1,7 @@
 import React from 'react'
 import { Padding, Vector } from '../lib/types'
-import Motion from '../react-motion2/Motion'
-import { spring } from '../react-motion2/spring'
 import SmoothCubicBezier from './SmoothCubicBezier'
+import { configToVal } from '../lib/configToVal'
 
 interface Props {
     stiffness: number;
@@ -14,23 +13,13 @@ interface Props {
 
 const Line: React.FC<Props> = (p) => {
 
-    const [state, setState] = React.useState<number[]>([0])
+    const data = configToVal(p.stiffness, p.damping, 0.01, 100)
 
     return (
-        <Motion
-            defaultStyle={{x: 0}}
-            style={{x: spring(100, {damping: p.damping, stiffness: p.stiffness})}}
-            onChange={x => setState([...state, x.x])}
-        >
-            {_ => {
-                return (
-                    <SmoothCubicBezier 
-                        data={state.map((x, i) => ({x: i * p.scale.x + p.padding.left, y: p.canvas.y - p.padding.buttom - x * p.scale.y}))}
-                        smoothingRatio={0.2}
-                    />
-                )
-            }}
-        </Motion>
+        <SmoothCubicBezier 
+            data={data.map((x, i) => ({x: i * p.scale.x + p.padding.left, y: p.canvas.y - p.padding.buttom - x * p.scale.y}))}
+            smoothingRatio={0.2}
+        />
     )
 }
 
